@@ -8,10 +8,12 @@ In the following, we provide the general project structure.
 
 ```bash
 Template-R-Project/
-├──                  #simulations from section 4.1
-├──                  #simulations from section 4.2
-├──                  #simulations from section 4.3
-├──                  #simulations from section 4.4
+├──sec4.1.R                  #simulations from section 4.1
+├──sec4.2_ex12.R             #simulations from section 4.2  :  examples 1 and 2
+├──sec4.2_ex34.R                                               examples 3 and 4
+├──sec4.2_ex56.R                                               examples 5 and 6
+├──sec4.3.R                  #simulations from section 4.3
+├──sec4.4.R                  #simulations from section 4.4
 ```
 
 
