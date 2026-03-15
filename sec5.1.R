@@ -1,6 +1,6 @@
 
 
-#Section 4.1 randomized coefficients
+#Section 5.1 randomized coefficients
 
 #load packages
 library(glmnet)
