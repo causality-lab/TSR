@@ -654,14 +654,14 @@ load("resultssim34.RData")
     geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
     theme_minimal() +
     coord_cartesian(xlim = c(-15, 7.5), ylim = c(-30, 0)) + 
     geom_boxplot(aes(x = X, y = -30), width = 2.5, fill = "grey", color = "black", alpha = 0.7) +
     geom_boxplot(aes(x = X_S, y = -27), width = 2.5, fill = "grey", color = "black", alpha = 0.7) +
-    scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
+    scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR","TSR","E[Y|X=x]")) +
     scale_fill_manual(values = c("naive" = "orange", "RR" = "lightblue", "TSR" = "lightgreen"), name = NULL) +
-    labs(x="x",y="")+
+    labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+ 
     theme(
       axis.title.x = element_text(size = 30),  
       axis.title.y = element_text(size = 20),  
@@ -693,14 +693,14 @@ load("resultssim34.RData")
     geom_line(aes(x = X_est, y = q_lower_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = q_upper_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
     theme_minimal() +
     coord_cartesian(xlim = c(-15, 7.5), ylim = c(-30, 0)) + 
     geom_boxplot(aes(x = X, y = -30), width = 2.5, fill = "grey", color = "black", alpha = 0.7) +
     geom_boxplot(aes(x = X_S, y = -27), width = 2.5, fill = "grey", color = "black", alpha = 0.7) +
-    scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green), name = NULL) +
+    scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR (ridge)","TSR (ridge)","E[Y|X=x]")) +
     scale_fill_manual(values = c("naive" = "orange", "RR (ridge)" = "lightblue", "TSR (ridge)" = "lightgreen"), name = NULL) +
-    labs(x="x",y="")+
+    labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
     theme(
       axis.title.x = element_text(size = 30),  
       axis.title.y = element_text(size = 20),  
@@ -734,14 +734,14 @@ load("resultssim34.RData")
     geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
     theme_minimal() +
     coord_cartesian(xlim = c(-15, 10), ylim = c(-80, 50)) + 
     geom_boxplot(aes(x = X, y = -77), width = 5, fill = "grey", color = "black", alpha = 0.7) +
     geom_boxplot(aes(x = X_S, y = -70), width = 5, fill = "grey", color = "black", alpha = 0.7) +
-    scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
+    scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR","TSR","E[Y|X=x]")) +
     scale_fill_manual(values = c("naive" = "orange", "RR" = "lightblue", "TSR" = "lightgreen"), name = NULL) +
-    labs(x="x",y="")+
+    labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
     theme(
       axis.title.x = element_text(size = 30),  
       axis.title.y = element_text(size = 20),  
@@ -773,14 +773,14 @@ load("resultssim34.RData")
     geom_line(aes(x = X_est, y = q_lower_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = q_upper_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
     geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+    geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
     theme_minimal() +
     coord_cartesian(xlim = c(-15, 10), ylim = c(-80, 50)) + 
     geom_boxplot(aes(x = X, y = -77), width = 5, fill = "grey", color = "black", alpha = 0.7) +
     geom_boxplot(aes(x = X_S, y = -70), width = 5, fill = "grey", color = "black", alpha = 0.7) +
-    scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green), name = NULL) +
+    scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR (ridge)","TSR (ridge)","E[Y|X=x]")) +
     scale_fill_manual(values = c("naive" = "orange", "RR (ridge)" = "lightblue", "TSR (ridge)" = "lightgreen"), name = NULL) +
-    labs(x="x",y="")+
+    labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
     theme(
       axis.title.x = element_text(size = 30),  
       axis.title.y = element_text(size = 20),  

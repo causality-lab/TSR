@@ -595,7 +595,7 @@ middle_green <- rgb(middle_green_rgb[1], middle_green_rgb[2], middle_green_rgb[3
 
 
 
-result<-result5000_bsp7
+result<-result5000_bsp8
 empty<-FALSE
 set.seed(1)
 
@@ -751,14 +751,14 @@ ggplot() +
   geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(xlim = c(-7, 5), ylim = c(-5, 3)) + 
   geom_boxplot(aes(x = X, y = 1.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
   geom_boxplot(aes(x = X_S, y = 2.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
-  scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
+  scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR","TSR","E[Y|X=x]")) +
   scale_fill_manual(values = c("naive" = "orange", "RR" = "lightblue", "TSR" = "lightgreen"), name = NULL) +
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 30),  
     axis.title.y = element_text(size = 20),  
@@ -766,10 +766,14 @@ ggplot() +
     legend.text = element_text(size = 20),  
     axis.text.x = element_text(size = 15),
     axis.text.y = element_text(size = 15),
-    legend.position = "none",
+    legend.position = "right",
     legend.spacing = unit(1.5, "cm"),
     legend.key.height = unit(1.3, "cm"),  
     legend.key.width = unit(1.3, "cm")
+  )+
+  guides(
+    fill  = guide_legend(order = 2),
+    color = guide_legend(order = 1)
   )
 
 
@@ -789,14 +793,14 @@ ggplot() +
   geom_line(aes(x = X_est, y = q_lower_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(xlim = c(-7, 5), ylim = c(-5, 3)) + 
   geom_boxplot(aes(x = X, y = 1.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
   geom_boxplot(aes(x = X_S, y = 2.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
-  scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green), name = NULL) +
+  scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR (ridge)","TSR (ridge)","E[Y|X=x]")) +
   scale_fill_manual(values = c("naive" = "orange", "RR (ridge)" = "lightblue", "TSR (ridge)" = "lightgreen"), name = NULL) +
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 30),  
     axis.title.y = element_text(size = 20),  
@@ -829,14 +833,14 @@ ggplot() +
   geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(xlim = c(-2.5, 7), ylim = c(-2.5, 7.5)) + 
   geom_boxplot(aes(x = X, y = -2.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
   geom_boxplot(aes(x = X_S, y = -1.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
-  scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
+  scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR","TSR","E[Y|X=x]")) +
   scale_fill_manual(values = c("naive" = "orange", "RR" = "lightblue", "TSR" = "lightgreen"), name = NULL) +
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 30),  
     axis.title.y = element_text(size = 20),  
@@ -867,14 +871,14 @@ ggplot() +
   geom_line(aes(x = X_est, y = q_lower_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = apply(X_est,1,wrong), color = "E[Y|X=x]"), linewidth = 1.3) +
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(xlim = c(-2.5, 7), ylim = c(-2.5, 7.5)) + 
   geom_boxplot(aes(x = X, y = -2.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
   geom_boxplot(aes(x = X_S, y = -1.5), width = 0.5, fill = "grey", color = "black", alpha = 0.7) +
-  scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green), name = NULL) +
+  scale_color_manual(values = c("ground truth" = "black", "naive"="orange", "RR (ridge)"="blue", "TSR (ridge)"=middle_green, "E[Y|X=x]" = "purple"), name = NULL,breaks=c("ground truth","naive","RR (ridge)","TSR (ridge)","E[Y|X=x]")) +
   scale_fill_manual(values = c("naive" = "orange", "RR (ridge)" = "lightblue", "TSR (ridge)" = "lightgreen"), name = NULL) +
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 30),  
     axis.title.y = element_text(size = 20),  

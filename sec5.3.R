@@ -307,13 +307,13 @@ ggplot() +
   geom_line(aes(x = X_est, y = est3_mean, color = "TSR"), size = 1.5)+
   geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(ylim = c(-40, 100),xlim=c(-10,10))+
   scale_fill_manual(values = c( "TSR" = "lightgreen", "RR" = "lightblue"), name = NULL) +
-  scale_color_manual(values = c("E[Y|do(X=x)]" = "black", "RR"="blue","TSR"=middle_green), name = NULL) +
+  scale_color_manual(values = c("ground truth" = "black", "RR"="blue","TSR"=middle_green), name = NULL) +
   theme(legend.position = "top")+
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 20),  
     axis.title.y = element_text(size = 20),  
@@ -326,7 +326,7 @@ ggplot() +
     legend.key.height = unit(1, "cm"),  
     legend.key.width = unit(1, "cm")
   )+
-  guides(fill = guide_legend(order = 1),
+  guides(fill = guide_legend(order = 2),
          color = guide_legend(order = 2))
 
 
@@ -343,13 +343,13 @@ ggplot() +
   geom_line(aes(x = X_est, y = est3_ridge_mean, color = "TSR (ridge)"), size = 1.5)+
   geom_line(aes(x = X_est, y = q_lower_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3_ridge, color = "TSR (ridge)"),linetype="dashed", size = 1)+
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(ylim = c(-40, 100),xlim=c(-10,10))+
   scale_fill_manual(values = c( "TSR (ridge)" = "lightgreen", "RR (ridge)" = "lightblue"), name = NULL) +
-  scale_color_manual(values = c("E[Y|do(X=x)]" = "black", "RR (ridge)"="blue","TSR (ridge)"=middle_green), name = NULL) +
+  scale_color_manual(values = c("ground truth" = "black", "RR (ridge)"="blue","TSR (ridge)"=middle_green), name = NULL) +
   theme(legend.position = "top")+
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 20),  
     axis.title.y = element_text(size = 20),  
@@ -362,7 +362,7 @@ ggplot() +
     legend.key.height = unit(1, "cm"),  
     legend.key.width = unit(1, "cm")
   )+
-  guides(fill = guide_legend(order = 1),
+  guides(fill = guide_legend(order = 2),
          color = guide_legend(order = 2))
 
 

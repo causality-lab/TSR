@@ -294,7 +294,7 @@ load("robust_5cases.Rdata")
 
 #plots with 95% areas
 
-result <- result5000_robust5
+result <- result5000_robust4
 set.seed(1)
 
 SIM <- result$SIM
@@ -419,14 +419,14 @@ ggplot() +
   geom_line(aes(x = X_est, y = est3_mean, color = "TSR"), size = 1.5)+
   geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
   geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
-  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "E[Y|do(X=x)]"), linewidth = 1.3) +
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
   theme_minimal() +
   coord_cartesian(xlim = c(-15, 7.5), ylim = c(-28, 30)) + 
   geom_boxplot(aes(x = X, y = -27), width = 5, fill = "grey", color = "black", alpha = 0.7) +
   geom_boxplot(aes(x = X_S, y = -20), width = 5, fill = "grey", color = "black", alpha = 0.7) +
-  scale_color_manual(values = c("E[Y|X=x]" = "purple", "E[Y|do(X=x)]" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
+  scale_color_manual(values = c("E[Y|X=x]" = "purple", "ground truth" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
   scale_fill_manual(values = c("naive" = "orange", "RR" = "lightblue", "TSR" = "lightgreen"), name = NULL) +
-  labs(x="x",y="")+
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
   theme(
     axis.title.x = element_text(size = 30),  
     axis.title.y = element_text(size = 20),  
@@ -445,4 +445,39 @@ ggplot() +
   )
 
 
+#without legend
+
+ggplot() +
+  geom_ribbon(aes(x = X_est, ymin = q_lower_naive, ymax = q_upper_naive,fill="naive"),alpha=0.1) +
+  geom_ribbon(aes(x = X_est, ymin = q_lower_est1, ymax = q_upper_est1,fill="RR"),alpha=0.8) +
+  geom_ribbon(aes(x = X_est, ymin = q_lower_est3, ymax = q_upper_est3,fill="TSR"),alpha=0.8) +
+  geom_line(aes(x = X_est, y = naive_mean, color = "naive"), size = 1.5)+
+  geom_line(aes(x = X_est, y = q_lower_naive, color = "naive"),linetype="dashed", size = 1)+
+  geom_line(aes(x = X_est, y = q_upper_naive, color = "naive"),linetype="dashed", size = 1)+
+  geom_line(aes(x = X_est, y = est1_mean, color = "RR"), size = 1.5)+
+  geom_line(aes(x = X_est, y = q_lower_est1, color = "RR"),linetype="dashed", size = 1)+
+  geom_line(aes(x = X_est, y = q_upper_est1, color = "RR"),linetype="dashed", size = 1)+
+  geom_line(aes(x = X_est, y = est3_mean, color = "TSR"), size = 1.5)+
+  geom_line(aes(x = X_est, y = q_lower_est3, color = "TSR"),linetype="dashed", size = 1)+
+  geom_line(aes(x = X_est, y = q_upper_est3, color = "TSR"),linetype="dashed", size = 1)+
+  geom_line(aes(x = X_est, y = apply(X_est,1,original), color = "ground truth"), linewidth = 1.3) +
+  theme_minimal() +
+  coord_cartesian(xlim = c(-15, 7.5), ylim = c(-28, 30)) + 
+  geom_boxplot(aes(x = X, y = -27), width = 5, fill = "grey", color = "black", alpha = 0.7) +
+  geom_boxplot(aes(x = X_S, y = -20), width = 5, fill = "grey", color = "black", alpha = 0.7) +
+  scale_color_manual(values = c("E[Y|X=x]" = "purple", "ground truth" = "black", "naive"="orange", "RR"="blue", "TSR"=middle_green), name = NULL) +
+  scale_fill_manual(values = c("naive" = "orange", "RR" = "lightblue", "TSR" = "lightgreen"), name = NULL) +
+  labs(x="x",y=expression(hat(E) * group("[", Y * group("|", do(X == x), ""), "]")))+
+  theme(
+    axis.title.x = element_text(size = 30),  
+    axis.title.y = element_text(size = 20),  
+    legend.title = element_text(size = 20),  
+    legend.text = element_text(size = 20),  
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    legend.position = "none",
+    legend.spacing = unit(1.5, "cm"),
+    legend.key.height = unit(1.3, "cm"),  
+    legend.key.width = unit(1.3, "cm")
+  )
 
