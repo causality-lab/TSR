@@ -26,11 +26,11 @@ length(colnames(imp1))
 #identify the corresponding variables for treatment X and proxies Z={V1,...,V25}
 
 #scale continuous covariates
-Z<-cbind(scale(imp1[,2]),scale(imp1[,3]),scale(imp1[,4]),scale(imp1[,5]), scale(imp1[,6]),
-         scale(imp1[,7]),      imp1[,8] ,      imp1[,9] ,      imp1[,10],       imp1[,11], 
-               imp1[,12],      imp1[,13],      imp1[,14],      imp1[,15],       imp1[,16],  
-               imp1[,17],      imp1[,18],      imp1[,19],      imp1[,20],       imp1[,21],
-               imp1[,22],      imp1[,23],      imp1[,24],      imp1[,25], scale(imp1[,26]))
+Z<-cbind(scale(imp1[,2]),scale(imp1[,3]),scale(imp1[,4]),scale(imp1[,5]),   scale(imp1[,6]),
+         scale(imp1[,7]),      imp1[,8] ,      imp1[,9] ,      imp1[,10],         imp1[,11], 
+               imp1[,12],      imp1[,13],      imp1[,14],      imp1[,15]-1,       imp1[,16],  
+               imp1[,17],      imp1[,18],      imp1[,19],      imp1[,20],         imp1[,21],
+               imp1[,22],      imp1[,23],      imp1[,24],      imp1[,25],         imp1[,26])
 
 (n<-nrow(Z))
 #[1] 985
@@ -98,7 +98,7 @@ boxplot(cbind(tsr-t,tsr_r-t,rr-t,rr_r-t,na-t),names=c("","","","",""),col=c("lig
 axis(1,at = 1:5,labels = c("TSR\n","TSR \n(ridge)","RR\n", "RR \n(ridge)","naive\n"),tick = FALSE,line = 2.2)   
 abline(h=0,col="gray")
 apply(cbind(tsr-t,tsr_r-t,rr-t,rr_r-t,na-t),2,mean)
-#[1] -0.0006897514 -0.0110324166 -0.0066913512 -0.0168984409  0.6385973328
+#[1] -0.0006897514 -0.0120191709 -0.0023520992 -0.0135540603  0.6375236977
 
 #adding confounding
 
@@ -168,5 +168,4 @@ boxplot(cbind(tsr-t,tsr_r-t,rr-t,rr_r-t,na-t),names=c("","","","",""),col=c("lig
 axis(1,at = 1:5,labels = c("TSR\n","TSR \n(ridge)","RR\n", "RR \n(ridge)","naive\n"),tick = FALSE,line = 2.2)   
 abline(h=0,col="gray")
 apply(cbind(tsr-t,tsr_r-t,rr-t,rr_r-t,na-t),2,mean)
-#[1] -0.003403171  0.922645222  1.050728208
-#[1] -0.0005705826  0.0085567640  0.9213210546  0.9201403989  1.0540470984
+#[1] -0.0005705826  0.0085811276  0.9204699508  0.9191743326  1.0486789300
