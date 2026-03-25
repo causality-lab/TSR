@@ -1,19 +1,6 @@
 #Experiment based on the IHDP (Infant Health and Development Program)
 
-#use the same covariates like Hill (2011)
-#package: bartcs
-#variables (from the documentation)
-#-treatment
-#-y_factual: Observed outcome.
-#-y_cfactual: Potential outcome given the opposite treatment.
-#-mu0: Control conditional means.
-#-mu1: Treated conditional means.
-#-X1 ~ X6: Confounders with continuous values.
-#-X7 ~ X25: Confounders with binary values.
-
-#randomized experiment, but was transformed to an observational one
-
-# We use the original dataset without deleted observation, which can be found here:
+# We use the dataset without deleted observation, which can be found here:
 # https://www.tandfonline.com/doi/suppl/10.1198/jcgs.2010.08162?scroll=top
 
 #use package for cross-validation
@@ -23,7 +10,7 @@ load(file="sim.data")
 length(colnames(imp1))
 #[1] 29
 
-#identify the corresponding variables for treatment X and proxies Z={V1,...,V25}
+#identify the corresponding variables for proxies Z={Z1,...,Z25}
 
 #scale continuous covariates
 Z<-cbind(scale(imp1[,2]),scale(imp1[,3]),scale(imp1[,4]),scale(imp1[,5]),   scale(imp1[,6]),
