@@ -1,3 +1,5 @@
+[![Venue](https://img.shields.io/badge/venue-Springer_Machine_Learning_(ECML--PKDD_2026)-darkblue)](https://link.springer.com/article/10.1007/s10994-026-07054-6)
+
 # Regression-Based Estimation of Causal Effects in the Presence of Selection Bias and Confounding
 
 We consider the problem of estimating the expected causal effect $E[Y|do(X)]$ for a target variable $Y$ when treatment $X$ is set by intervention, focusing on continuous random variables. In settings without selection bias or confounding, $E[Y|do(X)] = E[Y|X]$, which can be estimated using standard regression methods. However, regression fails when systematic missingness induced by selection bias, or confounding distorts the data. Proxy variables unaffected by the selection process can, under certain constraints, be used to correct for selection bias to recover $E[Y|X]$, and hence $E[Y|do(X)]$, reliably. When data is additionally affected by confounding, however, recovering the causal effect from selection-biased data is more challenging and requires access to proxies to both correct for confounding and for the selection mechanism. Assuming access to such proxies from external unbiased observational data, we derive theoretical conditions ensuring identifiability and recoverability of causal effects. We further introduce a linear two-step regression estimator (TSR), which can be extended through adding non-linear basis functions, capable of exploiting proxy variables to adjust for selection bias while accounting for confounding. We show that TSR is consistent with previous estimators when confounding is absent, but achieves a lower variance. Extensive simulation studies validate TSR’s correctness for scenarios that include both selection bias and confounding with proxy variables.
@@ -21,3 +23,20 @@ Template-R-Project/
 ## Installation Instructions
 
 R and the R packages ggplot2 and glmnet (ridge regression) need to be installed.
+
+## References
+
+```
+@article{hafer:26:selection-bias,
+  author  = {Hafer, Marlies and Marx, Alexander},
+  journal = {Machine Learning},
+  title   = {Regression-Based Estimation of Causal Effects in the Presence of Selection Bias and Confounding},
+  year    = {2026},
+  number  = {5},
+  pages   = {115},
+  volume  = {115},
+  doi     = {10.1007/s10994-026-07054-6},
+  isbn    = {1573-0565},
+}
+```
+
